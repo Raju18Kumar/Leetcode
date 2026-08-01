@@ -1,32 +1,15 @@
 class Solution {
     public void sortColors(int[] nums) {
-       int zero = 0;
-        int one = 0;
-        int two = 0;
-
-        for(int num : nums){
-
-            if(num == 0){
-                zero++;
-            }else if(num == 1){
-                one++;
-            }else{
-                two++;
-            }
+        HashMap<Integer,Integer> map = new HashMap<>();
+       for(int i = 0 ; i < nums.length ; i++){
+        map.put(nums[i],map.getOrDefault(nums[i],0)+1);
+       }
+       int index = 0;
+       for(int i = 0 ; i <=2 ;i++){
+        int count =  map.getOrDefault(i, 0);
+        for(int j = 0 ; j < count ; j++){
+            nums[index++]=i;
         }
-
-        int index = 0;
-
-        while(zero-- > 0){
-            nums[index++] = 0;
-        }
-
-        while(one-- > 0){
-            nums[index++] = 1;
-        }
-
-        while(two-- > 0){
-            nums[index++] = 2;
-        }
+       }
     }
 }
