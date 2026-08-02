@@ -1,13 +1,15 @@
 class Solution {
-    public int maxProduct(int[] nums) {
-        int maxProd = nums[0];
-        for (int i = 0; i < nums.length; i++) {
-            int prod = 1;
-            for (int j = i; j < nums.length; j++) {
-                prod *= nums[j];
-                maxProd = Math.max(maxProd, prod);
-            }
+    public int maxProduct(int[] arr) {
+        int n = arr.length;
+        int pre = 1, suff = 1;
+        int ans = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            if (pre == 0) pre = 1;
+            if (suff == 0) suff = 1;
+            pre *= arr[i];
+            suff *= arr[n - i - 1];
+            ans = Math.max(ans, Math.max(pre, suff));
         }
-        return maxProd;
+        return ans;
     }
 }
